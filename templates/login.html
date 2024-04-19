@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <main>
+        <div id="login-container">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Iniciar sesión</h5>
+                </div>
+                <div class="modal-body">
+                    {% if form.errors %}
+                        <div id="mensaje" class="alert alert-danger alert-dismissible" role="alert">
+                            {{ form.get_invalid_login_error }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endif %}
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form }}
+                        <button class="btn btn-primary active btn-lg" type="submit">Iniciar sesión</button>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+    
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+</body>
+</html>
